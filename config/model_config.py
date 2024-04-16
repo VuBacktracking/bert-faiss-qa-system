@@ -6,3 +6,4 @@ class ModelConfig:
     N_BEST = 20 # Số lượng kết quả tốt nhất được lựa chọn sau khi dự đoán
     MAX_ANS_LENGTH = 30 # Độ dài tối đa cho câu trả lời dự đoán
     EMBEDDING_COLUMN = "question_embedding"
+    PIPELINE_NAME = "question-answering"
