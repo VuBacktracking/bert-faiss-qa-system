@@ -31,38 +31,38 @@ validation_dataset = raw_datasets["validation"].map(
 )
 
 args = TrainingArguments(
-    output_dir="distilbert-finetuned-squadv2", # Thư mục lưu output
-    evaluation_strategy="no", # Chế độ đánh giá không tự động sau mỗi epoch
-    save_strategy="epoch", # Lưu checkpoint sau mỗi epoch
-    learning_rate=2e-5, # Tốc độ học
-    num_train_epochs=3, # Số epoch huấn luyện
-    weight_decay=0.01, # Giảm trọng lượng mô hình để tránh overfitting
-    fp16=True, # Sử dụng kiểu dữ liệu half-precision để tối ưu tài nguyên
-    push_to_hub=True, # Đẩy kết quả huấn luyện lên HuggingFace Hub )
+    output_dir="distilbert-finetuned-squadv2", # Directory to save output
+    evaluation_strategy="no", # Do not evaluate automatically after each epoch
+    save_strategy="epoch", # Save checkpoint after each epoch
+    learning_rate=2e-5, # Learning rate
+    num_train_epochs=3, # Number of training epochs
+    weight_decay=0.01, # Weight decay to prevent overfitting
+    fp16=True, # Use half-precision data type to optimize resources
+    push_to_hub=True, # Push training results to HuggingFace Hub
 )
 
-# Khởi tạo một đối tượng Trainer để huấn luyện mô hình
+# Initialize a Trainer object for training the model
 trainer = Trainer(
-      model=model, # Sử dụng mô hình đã tạo trước đó
-      args=args, # Các tham số và cấu hình huấn luyện
-      train_dataset=train_dataset, # Sử dụng tập dữ liệu huấn luyện
-      eval_dataset=validation_dataset, # Sử dụng tập dữ liệu đánh giá
-      tokenizer=tokenizer, # Sử dụng tokenizer để xử lý văn bản 
+      model=model, # Use the pre-trained model
+      args=args, # Training parameters and configurations
+      train_dataset=train_dataset, # Use the training dataset
+      eval_dataset=validation_dataset, # Use the evaluation dataset
+      tokenizer=tokenizer, # Use the tokenizer to process text 
       )
-# Bắt đầu quá trình huấn luyện
+# Start the training process
 trainer.train()
 
-# THỰC HIỆN ĐÁNH GIÁ MÔ HÌNH
+# EVALUATE THE MODEL
 
-# Tải metric "squad" từ thư viện evaluate
+# Load the "squad" metric from the evaluate library
 metric = evaluate.load("squad_v2")
 
-# Thực hiện dự đoán trên tập dữ liệu validation
+# Perform predictions on the validation dataset
 predictions , _, _ = trainer.predict(validation_dataset)
 
-#Lấy ra thông tin về các điểm bắt đầu và ddiểm kết thúc của câu trả lời dự đoán
+# Get the start and end logits of the predicted answers
 start_logits , end_logits = predictions
-# Tính toán các chỉ số đánh giá sử dụng hàm compute_metrics
+# Calculate evaluation metrics using the compute_metrics function
 results = compute_metrics(
               start_logits ,
               end_logits ,
@@ -70,7 +70,7 @@ results = compute_metrics(
               raw_datasets["validation"]
             )
 
-# In kết quả đánh giá mô hình
+# Print the evaluation results
 print(results)
 
 trainer.push_to_hub(commit_message="Training complete")
