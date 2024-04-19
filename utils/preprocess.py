@@ -6,7 +6,7 @@ device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cp
 
 MODEL_NAME = "distilbert-base-uncased"
 MAX_LENGTH = 384
-STRIDE = 384
+STRIDE = 128
 DATASET_NAME = "squad_v2"
 raw_datasets = load_dataset(DATASET_NAME)
 
