@@ -1,13 +1,18 @@
 import torch
 from datasets import load_dataset
 from transformers import AutoTokenizer
+import yaml
 
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 
-MODEL_NAME = "distilbert-base-uncased"
-MAX_LENGTH = 384
-STRIDE = 128
-DATASET_NAME = "squad_v2"
+# Load the YAML file
+with open('cfg/config.yaml', 'r') as file:
+    config = yaml.safe_load(file)
+
+DATASET_NAME = config["DATSET_NAME"]
+MODEL_NAME = config["MODEL_NAME"]
+MAX_LENGTH = config["MAX_LENGTH"]
+STRIDE = config["STRIDE"]
 raw_datasets = load_dataset(DATASET_NAME)
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
