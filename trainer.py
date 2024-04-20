@@ -7,11 +7,16 @@ import evaluate
 
 from utils.preprocess import preprocess_training_examples, preprocess_validation_examples
 from utils.metric import compute_metrics
+import yaml
 
-MODEL_NAME = "distilbert-base-uncased"
-MAX_LENGTH = 384
-STRIDE = 384
-DATASET_NAME = "squad_v2"
+# Load the YAML file
+with open('cfg/config.yaml', 'r') as file:
+    config = yaml.safe_load(file)
+
+MODEL_NAME = config["MODEL_NAME"]
+MAX_LENGTH = config["MAX_LENGTH"]
+STRIDE = config["STRIDE"]
+DATASET_NAME = config["DATASET_NAME"]
 
 raw_datasets = load_dataset(DATASET_NAME)
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
