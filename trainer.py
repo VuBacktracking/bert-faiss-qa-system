@@ -13,10 +13,10 @@ import yaml
 with open('cfg/config.yaml', 'r') as file:
     config = yaml.safe_load(file)
 
-MODEL_NAME = config["MODEL_NAME"]
-MAX_LENGTH = config["MAX_LENGTH"]
-STRIDE = config["STRIDE"]
-DATASET_NAME = config["DATASET_NAME"]
+MODEL_NAME = config["Config"]["MODEL_NAME"]
+MAX_LENGTH = config["Config"]["MAX_LENGTH"]
+STRIDE = config["Config"]["STRIDE"]
+DATASET_NAME = config["Config"]["DATASET_NAME"]
 
 raw_datasets = load_dataset(DATASET_NAME)
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
