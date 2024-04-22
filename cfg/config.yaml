@@ -7,6 +7,4 @@ Config:
     MAX_ANS_LENGTH : 30 # Độ dài tối đa cho câu trả lời dự đoán
     EMBEDDING_COLUMN : "question_embedding"
     PIPELINE_NAME : "question-answering"
-    FINETUNED_MODEL_NAME: "thangduong0509/distilbert-finetuned-squadv2"
-
-# vubacktracking/distilbert-base-uncased-finetuned-squad2
+    FINETUNED_MODEL_NAME: "vubacktracking/distilbert-base-uncased-finetuned-squad2"
