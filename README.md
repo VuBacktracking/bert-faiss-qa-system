@@ -1,8 +1,33 @@
 # Q&A System using BERT and Faiss Vector Database
 
+---
+
+### Table of Contents
+
+- [Q\&A System using BERT and Faiss Vector Database](#qa-system-using-bert-and-faiss-vector-database)
+    - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Features](#features)
+  - [Installation](#installation)
+    - [Requirements](#requirements)
+    - [Setup](#setup)
+  - [Usage](#usage)
+    - [Streamlit Web App Interface](#streamlit-web-app-interface)
+  - [How it Works](#how-it-works)
+  - [Demo](#demo)
+    - [Extractive Q\&A](#extractive-qa)
+    - [Closed Generative Q\&A](#closed-generative-qa)
+  - [Acknowledgments](#acknowledgments)
+
+---
+
 ## Overview
 
 This project is a Question & Answer system implemented using DistilBERT for text representation and Faiss (Facebook AI Similarity Search) for efficient similarity search in a vector database. The system is designed to provide accurate and relevant answers to user queries by searching through a large collection of documents.
+
+<p align = "center">
+    <img src="assets/faiss-index.png" alt="workflow" width="70%">
+</p>
 
 ## Features
 
