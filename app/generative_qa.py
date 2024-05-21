@@ -21,6 +21,7 @@ dataset = load_dataset(DATASET_NAME, split = "train+validation")
 dataset = dataset.filter(
     lambda x: len(x['answers']['text']) > 0
 )
+dataset.load_faiss_index('question_embedding', 'faiss_index/my_index.faiss')
 
 @st.cache
 def generate_answer(input_question):

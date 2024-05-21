@@ -12,10 +12,8 @@ pipe = pipeline(PIPELINE_NAME, model = FINETUNED_MODEL_NAME)
 
 @st.cache
 def extract_answer(question, context):
-  return pipe({
-              "question":question,
-              "context":context
-              })
+  return pipe(question=question,
+        context=context)
 
 def render():
     col1, col2 = st.columns(2)
@@ -33,4 +31,10 @@ def render():
                     # Extract answer and score
                     answer = result['answer']
                     score = result['score']
-                    st.write(f"Answer: {answer}\nScore: {score}")
+                    # Display the answer in a box
+                    st.subheader("Answer:")
+                    st.info(f"🤖 {answer}")
+
+                    # Display the score in a separate box
+                    st.subheader("Score:")
+                    st.info(score)

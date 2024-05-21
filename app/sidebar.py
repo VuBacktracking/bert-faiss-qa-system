@@ -8,8 +8,6 @@ def show():
                     """, unsafe_allow_html = False)
         selected = option_menu(
             menu_title = None, #required
-            # options = ["Text", "IMDb movie reviews", "Image", "Audio", "Video", "Twitter Data", "Web Scraping"], #required
-            # icons = ["card-text", "film", "image", "mic", "camera-video", "twitter", "globe"], #optional
             
             options = ["Extractive Q&A", "Closed Generative Q&A"], #required
             icons = ["card-text", "globe"], #optional
