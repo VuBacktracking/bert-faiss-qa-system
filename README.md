@@ -68,8 +68,9 @@ pip install -r requirements.txt
 ```bash
 python3 trainer.py
 ```
+*Note*: You can check my model in the link: https://huggingface.co/vubacktracking/distilbert-base-uncased-finetuned-squad2
 
-3. Build the Faiss vector database:
+4. Build the Faiss vector database:
 
 ```bash
 python3 faiss_index.py
